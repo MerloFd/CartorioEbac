@@ -149,7 +149,6 @@ int main() //função principal que define o menu do projeto
    		break;
    		
    		case 3: //caso o usuario tenha escolhido 3
-   	
    		deletar(); // chamada de funções
    		break;
    		
