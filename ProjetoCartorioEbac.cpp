@@ -194,51 +194,74 @@ int deletar() // função para deletar
 int main() //função principal que define o menu do projeto
 {
 	int opcao=0; //variavel de escolha no menu
-	int laco=1; //variavel de looping do for
+	int laco=1; //variavel de looping do for no menu
+	char senha[ ]="a"; // string da senha de login
+	int comparacao; // string que vai fazer a comparacao na validacao da senha
+	int tentativa=5 // variavel de looping do for na tentativa da senha
+
+	for (tentativa=5; tentativa=5;)
+	{
+
+			setlocale(LC_ALL, "Portuguese"); //define que a linguagem é o portugues, de acordo com a biblioteca
 	
-	for (laco=1;laco=1;) //laço de repetição do menu "enquanto laco for 1 faça ate laco for 1"
-	{ 
-		system("cls"); //limpa a tela
+			printf("\tCartório dos alunos EBAC \n\n");
+			printf("\tLogin ADMIN\n\n");
+			printf("\tDigite a sua senha:  ");
+			scanf("%s", senha); // armazena a responta na variavel senha
+	
+			comparacao = strcmp (senha, "admin"); // compara "strcmp", o valor de senha com "admin", usando a variavel comparacao
+	
+			if (comparacao ==0) // validacao da senha, se estiver correta vai retornar zero no armazenamento da string, por isso o valor zero ali
+			{
+				system("cls"); //limpa a tela	
+				
+				for (laco=1;laco=1;) //laço de repetição do menu "enquanto laco for 1 faça ate laco for 1"
+				{ 
+					system("cls"); //limpa a tela
 		
-		setlocale(LC_ALL, "Portuguese"); //define que a linguagem é o portugues, de acordo com a biblioteca
-	
-		printf("\tCartório dos alunos EBAC \n\n"); // mensagens ao usuario
-		printf("--- Escolha a opção desejada no menu: --- \n\n");
-		printf("\t1 - Registrar Nomes\n");
-		printf("\t2 - Consultar Nomes\n");
-		printf("\t3 - Deletar Nomes\n");
-		printf("\t0 - Sair do Sistema\n\n\n");
-		printf("\tOpção: ");	
-	
-		scanf("%d", &opcao); //armazenamento da escolha do usuário na variavel opcao
-	
-		system("cls"); // limpa a tela
+					printf("\tCartório dos alunos EBAC \n\n"); // mensagens ao usuario
+					printf("--- Escolha a opção desejada no menu: --- \n\n");
+					printf("\t1 - Registrar Nomes\n");
+					printf("\t2 - Consultar Nomes\n");
+					printf("\t3 - Deletar Nomes\n");
+					printf("\t0 - Sair do Sistema\n\n\n");
+					printf("\tOpção: ");	
 		
-		switch(opcao) //analise da escolha do usuario, para tomar uma decisão
-		{
+					scanf("%d", &opcao); //armazenamento da escolha do usuário na variavel opcao
 			
-		case 1: //caso o usuario tenha escolhido 1
-		registro(); // chamada de funções
-   		break;
-   		
-   		case 2: //caso o usuario tenha escolhido 2
-   		consulta(); // chamada de funções
-   		break;
-   		
-   		case 3: //caso o usuario tenha escolhido 3
-   		deletar(); // chamada de funções
-   		break;
-   		
-   		case 0: //caso o usuario tenha escolhido 0
-   		printf("Obrigado por usar o sistema!");
-   		return 0; // fecha o programa, retorna 0
-   		break;
-   		
-   		default: // caso o usuario tenha escolhido qualquer coisa diferente das opcoes apresentadas
-   		printf("Escolha invalida\n");
-   		system("pause"); //pausa a execução do programa até uma interação
-   		break;
-   		
-    	} //fim da seleção
-    }
-}
+					system("cls"); // limpa a tela
+				
+					switch(opcao) //analise da escolha do usuario, para tomar uma decisão
+					{
+			
+					case 1: //caso o usuario tenha escolhido 1
+					registro(); // chamada de funções
+	   				break;
+	   		
+		  	 		case 2: //caso o usuario tenha escolhido 2
+		   			consulta(); // chamada de funções
+	   				break;
+	   		
+	   				case 3: //caso o usuario tenha escolhido 3
+	   				deletar(); // chamada de funções
+	   				break;
+	   		
+	   				case 0: //caso o usuario tenha escolhido 0
+	   				printf("Obrigado por usar o sistema!");
+	   				return 0; // fecha o programa, retorna 0
+	   				break;
+	   		
+	   				default: // caso o usuario tenha escolhido qualquer coisa diferente das opcoes apresentadas
+	   				printf("Escolha invalida\n");
+	   				system("pause"); //pausa a execução do programa até uma interação
+	   				break;
+	   		
+    				} //fim da seleção
+   				} // fim do for menu
+  	  		} // fim do if senha
+  	  			else
+  	  			{
+  	  			printf("Senha inválida, tente novamente.");	
+				}
+	} // fim do for senha
+ } // fim do main
