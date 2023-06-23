@@ -11,7 +11,10 @@ int registro() // Função de cadastro
 	char nome[40];
 	char sobrenome[40];
 	char cargo[40];
+	int menu=3; // variavel responsavel por armazenar a escolha se o usuario quer voltar ao menu ou nao
 	//final da criação de variaveis/strings
+	
+	system("cls"); // limpa a tela
 	
 	printf("\t--- Registro de Nomes ---\n\n"); // mensagem na tela 
 	
@@ -58,7 +61,28 @@ int registro() // Função de cadastro
 	fprintf(file,cargo); // salva o valor da variavel no arquivo, no caso cargo
 	fclose(file);// fecha o arquivo
 	
-	printf("\n\n- Suas informações foram salvas com sucesso! -\n\n");
+	printf("\n- Suas informações foram salvas com sucesso! -\n\n");
+	
+	
+	printf("\nDeseja cadastrar mais usuários?\n\n"); // caso o usuario queira cadastrar mais usuarios ou voltar ao menu
+	printf("\t1 - Sim\n");
+	printf("\t2 - Não\n");
+	scanf("%d", &menu); // atribui a escolha a variavel menu
+	
+	switch(menu)
+	{
+		case 1:
+		registro(); // volta novamente ao registro
+		break;
+		
+		case 2:
+		return 1; // o return menciona o valor do for da funcao main, retorna a main
+		break;
+		
+		default:
+		printf("\nescolha inválida\n"); // caso o usuario tenha escolhido qualquer coisa diferente das opcoes apresentadas
+		break;
+	}
 	
 	system("pause");
 }
@@ -68,7 +92,10 @@ int consulta() // Função de consulta
 	//inicio da criação de variaveis/strings
 	char cpf[40]; // indicando a variavel cpf que foi usada em registro
 	char conteudo[200]; // variavel que vai coletar o conteudo do arquivo e mostrá lo
+	int menu=3; // variavel responsavel por armazenar a escolha se o usuario quer voltar ao menu ou nao
 	//final da criação de variaveis/strings
+	
+	system ("cls"); // limpa a tela
 	
 	setlocale(LC_ALL, "Portuguese"); // reconhece o uso de acentos na digitação
 		
@@ -92,12 +119,39 @@ int consulta() // Função de consulta
 		printf("\n\n");
 	}
 	
+	fclose(file); // fecha o arquivo
+	
+	printf("\nDeseja consultar mais usuários?\n\n"); // caso o usuario queira consultar mais usuarios ou voltar ao menu
+	printf("\t1 - Sim\n");
+	printf("\t2 - Não\n");
+	scanf("%d", &menu); // atribui a escolha a variavel menu
+	
+	switch(menu)
+	{
+		case 1:
+		consulta(); // volta novamente ao registro
+		break;
+		
+		case 2:
+		return 1; // o return menciona o valor do for da funcao main, retorna a main
+		break;
+		
+		default:
+		printf("\nescolha inválida\n"); // caso o usuario tenha escolhido qualquer coisa diferente das opcoes apresentadas
+		break;
+	}
+	
    	system("pause");
 }
 
 int deletar() // função para deletar
-{		
+{	
+	//inicio da criação de variaveis/strings
 	char cpf[40]; // indicando a variavel cpf que foi usada em registro
+	int menu=3; // variavel responsavel por armazenar a escolha se o usuario quer voltar ao menu ou nao
+	//final da criação de variaveis/strings
+	
+	system ("cls"); // limpa a tela
 	
 	printf("\t--- Deletar Nomes ---\n\n"); // mensagem na tela
 	printf("Digite o CPF do Usuário que deseja deletar:  \n"); // pergunta direcionada ao usuario
@@ -110,9 +164,31 @@ int deletar() // função para deletar
  	
  	if (file == NULL) // validação se caso não for encontrado um arquivo com o valor da string
  	{
- 		printf("O usuário não se encontra no sistema.\n\n"); // mensagem direcionada ao usuario indicando que o valor digitado não existe
- 		system("pause"); 
+ 		printf("\nO usuário não se encontra no sistema.\n\n"); // mensagem direcionada ao usuario indicando que o valor digitado não existe 
 	}
+	
+	
+	printf("\nDeseja deletar mais usuários?\n\n");  // caso o usuario queira deletar mais usuarios ou voltar ao menu
+	printf("\t1 - Sim\n");
+	printf("\t2 - Não\n");
+	scanf("%d", &menu); // atribui a escolha a variavel menu
+	
+	switch(menu)
+	{
+		case 1:
+		deletar(); // volta novamente ao registro
+		break;
+		
+		case 2:
+		return 1; // o return menciona o valor do for da funcao main, retorna a main
+		break;
+		
+		default:
+		printf("\nescolha inválida\n"); // caso o usuario tenha escolhido qualquer coisa diferente das opcoes apresentadas
+		break;
+	}
+	
+	system("pause");
 }
 
 int main() //função principal que define o menu do projeto
@@ -130,7 +206,8 @@ int main() //função principal que define o menu do projeto
 		printf("--- Escolha a opção desejada no menu: --- \n\n");
 		printf("\t1 - Registrar Nomes\n");
 		printf("\t2 - Consultar Nomes\n");
-		printf("\t3 - Deletar Nomes\n\n\n");
+		printf("\t3 - Deletar Nomes\n");
+		printf("\t0 - Sair do Sistema\n\n\n");
 		printf("\tOpção: ");	
 	
 		scanf("%d", &opcao); //armazenamento da escolha do usuário na variavel opcao
@@ -152,7 +229,12 @@ int main() //função principal que define o menu do projeto
    		deletar(); // chamada de funções
    		break;
    		
-   		default: //caso o usuario tenha escolhido qualquer coisa diferente das apresentadas
+   		case 0: //caso o usuario tenha escolhido 0
+   		printf("Obrigado por usar o sistema!");
+   		return 0; // fecha o programa, retorna 0
+   		break;
+   		
+   		default: // caso o usuario tenha escolhido qualquer coisa diferente das opcoes apresentadas
    		printf("Escolha invalida\n");
    		system("pause"); //pausa a execução do programa até uma interação
    		break;
